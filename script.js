@@ -3,7 +3,9 @@ const correctAnswers = ['A','B','A','C'];
 
 const form = document.querySelector('.quizform');
 
-let textAnser = document.querySelector('.intro h5');
+let textAnser = document.querySelector('.container p span');
+
+let showAns = document.querySelector('.result');
 
 form.addEventListener('submit', e => {
     e.preventDefault();
@@ -18,8 +20,24 @@ form.addEventListener('submit', e => {
         }
     });
 
-    
-    textAnser.textContent = `Your Score is: ${score}`;
+    //enables scroll to top
+    scrollTo(0,0);
 
-    
+    showAns.classList.remove('d-none');
+
+    let i = 0;
+    let timer= setInterval(()=>{
+        i++
+        textAnser.textContent = `${i}%`;
+        if(i === score){
+            clearInterval(timer);
+        }
+    }, 25);
+
 });
+
+//Calls function after 3 sec
+    // setTimeout(()=>{
+    // alert('Oshaei');
+    // }, 3000)
+
